@@ -1,0 +1,15 @@
+// API configuration
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
+export const getApiUrl = (endpoint: string) => {
+    // Remove leading slash if present
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+    return `${API_URL}/${cleanEndpoint}`;
+};
+
+// Helper function for fetch with API URL
+export const apiFetch = (endpoint: string, options?: RequestInit) => {
+    return fetch(getApiUrl(endpoint), options);
+};
+
+export default API_URL;
